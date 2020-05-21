@@ -136,7 +136,9 @@ class sisAPI:
 
         try:
             self.access_token = self._getToken(username, password)
-            token_file = open(os.environ['HOME'] + '/.osiris_token', 'w')
+            token_file = open(os.open(os.environ['HOME'] + '/.osiris_token',
+                                      os.O_CREAT | os.O_WRONLY,
+                                      0o600), 'w')
             token_file.write(self.access_token)
             return True
         except:
